@@ -1,0 +1,7 @@
+p: a(href="/blog/new") New post
+#articles
+  - if(articles.length)
+    != partial('article_list', {collection : articles, as : 'article'})
+  - else
+    #no-results No articles found. Create one 
+      a(href="/blog/new") here

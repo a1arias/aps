@@ -1,0 +1,14 @@
+- if(lastInCollection)
+  - class = 'last'
+- else
+  - class = ''
+div(class="article #{class}")
+  div.article_title
+    a(href='/blog/'+article._id, title=article.title) #{article.title}
+  div.article_body
+    =article.content
+  a(href='/blog/'+article._id+'/edit', title="edit") Edit
+  &nbsp;
+  form(method='post', action='/blog/'+article._id)
+    input(type='hidden', name='_method', value='DELETE')
+    input(type='submit', value='Delete')

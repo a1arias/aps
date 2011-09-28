@@ -1,0 +1,13 @@
+!!!
+html
+  head
+    title= title
+    // link(rel='stylesheet', href='/stylesheets/ext-all.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    //script(src='/javascripts/ext-all-debug-w-comments.js')
+    //script(src='/javascripts/app.js')
+  body 
+    h1#title= title
+    include includes/nav
+    #main
+      != body
