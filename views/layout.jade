@@ -2,12 +2,15 @@
 html
   head
     title= title
-    // link(rel='stylesheet', href='/stylesheets/ext-all.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    //script(src='/javascripts/ext-all-debug-w-comments.js')
-    //script(src='/javascripts/app.js')
-  body 
-    h1#title= title
-    include includes/nav
-    #main
-      != body
+    block css
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      //link(rel='stylesheet', href='/aps-ext4-ui/extjs/resources/css/ext-all.css')
+    block scripts
+      //script(src='/extjs/ext-debug.js')
+      //script(src='/aps-ext4-ui/app.js')
+  body
+    block content
+      h1#title= title
+      include includes/nav
+      #main
+        != body

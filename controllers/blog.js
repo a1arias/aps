@@ -10,40 +10,28 @@ var Canvas = require('canvas');
 
 // GET /blog
 exports.index = function(req, res){
-  canvas = new Canvas(200,200),
-  ctx = canvas.getContext('2d');
-  
-  ctx.font = '30px Impact';
-  ctx.rotate(.1);
-  ctx.fillText("Awesome!", 50, 100);
-  
-  var te = ctx.measureText('Awesome!');
-  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-  ctx.beginPath();
-  ctx.lineTo(50, 102);
-  ctx.lineTo(50 + te.width, 102);
-  ctx.stroke();
-  console.log('<img src="' + canvas.toDataURL() + '" />');
-  debugger;
 
   articles = Articles.find({}, function(err, doc){
     if(err){
+
         console.log('Error: '+"\n"+util.inspect(err, true, 3)+"\n");
         return err;
+
     } else {
+
         //console.log('Document: '+"\n"+util.inspect(doc, true, 3)+"\n");
         
         switch(req.format){
             
           case 'json':
             res.send(util.inspect(doc));
-            break;
+          break;
            
           case 'xml':
             res.send('<article>' + articles.map(function(article){
               return '<article_title>' + article.title + '</article_title>';
             }).join('') + '</article>');
-            break;
+          break;
             
           default:
             //res.send(articles);
@@ -54,12 +42,12 @@ exports.index = function(req, res){
                   articles: doc
               }
             });
-              
+            
         }
+
     }
+
   });
-
-
 };
 
 // GET /blog/new
@@ -116,6 +104,7 @@ exports.edit = function(req, res){
   //res.send(util.inspect(everyauth, true, null));
   //console.log(util.inspect(req, true, null));
   if(!req.loggedIn){
+    req.session.redirectUrl = req.originalUrl;
     res.redirect('/login');
   } else {
     blogId = new ObjectId(req.params.blog);

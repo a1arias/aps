@@ -1,0 +1,13 @@
+extends layout
+
+block css
+	link(rel='stylesheet', href='/aps-ext4-ui/resources/css/my-ext-theme.css')
+
+block content
+	p: a(href="flicks/new")
+	script(type="text/javascript", src='aps-ext4-ui/extjs/ext-debug.js')
+	script(type="text/javascript")
+		Ext.Loader.setConfig({
+			enabled: true
+		});
+	script(type="text/javascript", src="aps-ext4-ui/app.js")

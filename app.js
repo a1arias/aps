@@ -1,5 +1,9 @@
+/**
+ * Uncomment to enable profiling
+ */
 //var profiler = require('v8-profiler');
 //profiler.startProfiling('startup');
+
 
 var util = require('util');
 
