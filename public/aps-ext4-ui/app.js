@@ -1,11 +1,18 @@
 Ext.application({
+    name: 'AM',
 
-    name: "Flicks",
-    appFolder: "aps-ext4-ui",
-
-    autoCreateViewport: true,
+    appFolder: 'aps-ext4-ui/app',
 
     controllers: [
-        'Movies'
-    ]
+    	'Users'
+    ],
+
+    launch: function() {
+        Ext.create('Ext.container.Viewport', {
+            layout: 'fit',
+            items: {
+                xtype: 'userlist'
+            }
+        });
+    }
 });

@@ -1,16 +1,13 @@
-!!!
+!!! 5
 html
   head
     title= title
     block css
       link(rel='stylesheet', href='/stylesheets/style.css')
-      //link(rel='stylesheet', href='/aps-ext4-ui/extjs/resources/css/ext-all.css')
     block scripts
-      //script(src='/extjs/ext-debug.js')
-      //script(src='/aps-ext4-ui/app.js')
+      script(type='text/javascript', src='javascripts/jquery.min.js')
   body
+    h1#title= title
+    include includes/nav
     block content
-      h1#title= title
-      include includes/nav
-      #main
-        != body
+      // override

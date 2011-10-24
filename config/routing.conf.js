@@ -14,6 +14,10 @@ exports.rules =  [
     {
         rule:   '/flicks',
         module: 'flicks',
+    },
+    {
+        rule:   '/users',
+        module: 'users',
     }
 ];
 

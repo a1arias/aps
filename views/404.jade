@@ -1,0 +1,12 @@
+extends layout
+
+block css
+	link(rel='stylesheet', href='/stylesheets/error.css')
+
+block scripts
+	// override with nothing
+
+block content
+	pre(class="error")= desc
+	#oops
+	//img(alt='hot anime oops', src='images/hot_anime_oops.jpg')

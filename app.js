@@ -23,6 +23,18 @@ var express = require('express')
 var UserSchema = new Schema({})
     , User;
 
+// TODO: create authorization module for use within resource controllers
+
+// TODO: move to Errors class
+// 404 error handler
+function NotFound(msg){
+  this.name = 'NotFound';
+  Error.call(this, msg);
+  Error.captureStackTrace(this, arguments.callee);
+}
+NotFound.prototype.__proto__ = Error.prototype;
+
+// everyauth / mongoogeauth setup
 UserSchema.plugin(mongooseAuth, {
     everymodule: {
       everyauth: {
@@ -31,6 +43,8 @@ UserSchema.plugin(mongooseAuth, {
         }
       }
     },
+
+    //TODO: Move vaues to configuration file
 
     facebook: {
       everyauth: {
@@ -57,10 +71,12 @@ mongoose.model('User', UserSchema);
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('view options', { layout: false });
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'HelloJ3lloOhY34', store: new RedisStore({pass: 'PushStrangeWorld'}) }));
+  app.use(express.favicon());
   app.use(require('stylus').middleware({ src: __dirname + '/public' }));
   app.use(mongooseAuth.middleware());
   app.dynamicHelpers({
@@ -101,6 +117,36 @@ mongoose.connect(app.set('db-uri'));
 
 User = mongoose.model('User');
 
+mongooseAuth.helpExpress(app);
+
+app.error(function(err, req, res, next){
+  if(err instanceof NotFound){
+    res.render('404', {locals: {
+      title: '404 - Not Found',
+      desc: 'The requested resource could not be found',
+      // analyticsId: 'XXXXXXX',
+      error: err
+    }, status: 404});
+  } else {
+    console.log(util.inspect(err));
+    debugger;
+    res.render('500', {locals: {
+      title: '500 - Internal Server Error',
+      desc: 'Unable to process the request',
+      // analyticsId: 'XXXXXXX',
+      error: err
+    }, status: 500});
+  }
+});
+
+app.get('/404', function(req, res){
+  throw new NotFound;
+});
+
+app.get('/500', function(req, res){
+  throw new Error('Unable to process request.');
+});
+
 var route_rules = require('./config/routing.conf.js').rules;
 // Routes handler
 
@@ -112,7 +158,9 @@ route_rules.forEach(function(e){
     }
 });
 
-mongooseAuth.helpExpress(app);
+app.get('*', function(req, res){
+  throw new NotFound;
+});
 
 // works with spark2 and node
 if(!module.parent){
