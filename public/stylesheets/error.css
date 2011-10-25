@@ -1,3 +1,8 @@
+div#nav ul li {
+  list-style: none;
+  display: inline;
+  padding: 1em;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -7,11 +12,6 @@ h1#title {
 }
 a {
   color: #00b7ff;
-}
-div#nav ul li {
-  list-style: none;
-  display: inline;
-  padding: 1em;
 }
 div#oops {
   background-image: url("/images/oops-yoko-themajor-500x645.png");
