@@ -1,3 +1,4 @@
+
 /**
  * Uncomment to enable profiling
  */
@@ -25,7 +26,7 @@ var UserSchema = new Schema({})
 
 // TODO: create authorization module for use within resource controllers
 
-// TODO: move to Errors class
+// TODO: move to lib
 // 404 error handler
 function NotFound(msg){
   this.name = 'NotFound';
@@ -89,8 +90,8 @@ app.configure(function(){
     messages: require('express-messages')
   });
   //app.use(app.router);
+  //app.use(express.directory(__dirname + '/public'));
   app.use(express.static(__dirname + '/public'));
-  app.use(express.directory(__dirname + '/public'));
 });
 
 // Testing ENV only

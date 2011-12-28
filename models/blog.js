@@ -16,7 +16,7 @@ var ArticleSchema = new Schema({
 var ArticleModel = mongoose.model('Article', ArticleSchema);
 
 //exports.Article = mongoose.model('Article', ArticleSchema);
-exports.Articles = ArticleModel;
+exports.Article = ArticleModel;
 
 ArticleProvider = ArticleSchema;
 

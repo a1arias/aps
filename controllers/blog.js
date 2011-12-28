@@ -6,7 +6,7 @@ var ArticleProvider = require('../models/blog').ArticleProvider;
 
 var ObjectId = require('mongoose').Types.ObjectId;
 
-var Canvas = require('canvas');
+//var Canvas = require('canvas');
 
 // GET /blog
 exports.index = function(req, res) {
