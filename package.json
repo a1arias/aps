@@ -8,13 +8,11 @@
     "express-mongoose": "0.0.2",
     "stylus": ">= 0.15.1",
     "jade": ">= 0.15.2",
-    "mongodb": ">= 0.9.6-13",
     "mongoose": ">= 2.0.4",
     "sequelize": "latest",
     "connect-redis": ">= 1.0.7",
     "everyauth": ">= 0.2.18",
     "mongoose-auth": ">=0.0.11",
-    "connect-form": ">=0.2.1",
     "express-messages": ">=0.0.2",
     "canvas": "latest"
   }
