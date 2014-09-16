@@ -1,9 +1,8 @@
 # Setup
 
 Install node dependencies from project directory.
-{{{
+
 	npm install
-}}}
 
 # Run
 
